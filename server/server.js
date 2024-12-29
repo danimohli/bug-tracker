@@ -18,6 +18,9 @@ mongoose
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.error(err));
 
+const User = require('./models/User');
+const Task = require('./models/Task');
+
 // Basic Routing
 app.get('/', (req, res) => {
   res.send('TaskHub Backend is running!');
