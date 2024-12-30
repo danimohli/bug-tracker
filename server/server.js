@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
+// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -18,15 +19,20 @@ mongoose
   .then(() => console.log('MongoDB Connected'))
   .catch((err) => console.error(err));
 
+// Import Models
 const User = require('./models/User');
 const Task = require('./models/Task');
 
-// Basic Routing
+// User Routes
+app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/tasks', require('./routes/taskRoutes'));
+
+// Basic Route
 app.get('/', (req, res) => {
   res.send('TaskHub Backend is running!');
 });
 
-// Starting the  Server
+// Start Server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
